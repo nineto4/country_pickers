@@ -41,21 +41,19 @@ class _CountryPickerDropdownState extends State<CountryPickerDropdown> {
   void initState() {
     _countries =
         countryList.where(widget.itemFilter ?? acceptAllCountries).toList();
-
     if (widget.initialValue != null) {
-      try {
-        _selectedCountry = _countries.firstWhere(
-          (country) =>
-              country.name.toUpperCase() == widget.initialValue.toUpperCase(),
-        );
-      } catch (error) {
-        _selectedCountry = _countries.firstWhere(
-          (country) => country.isoCode == widget.initialValue.toUpperCase(),
-        );
+      for (int i = 0, n = _countries.length; i < n; i++) {
+        if (_countries[i].name.toUpperCase() ==
+                widget.initialValue.toUpperCase() ||
+            _countries[i].isoCode.toUpperCase() ==
+                widget.initialValue.toUpperCase()) {
+          _selectedCountry = _countries[i];
+          break;
+        }
       }
-      if (_selectedCountry == null) _countries[119];
+      if (_selectedCountry == null) _selectedCountry = _countries[118];
     } else {
-      _selectedCountry = _countries[119];
+      _selectedCountry = _countries[118];
     }
 
     super.initState();
