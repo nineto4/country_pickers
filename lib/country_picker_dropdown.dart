@@ -46,7 +46,7 @@ class _CountryPickerDropdownState extends State<CountryPickerDropdown> {
     if (widget.initialValue != null) {
       try {
         _selectedCountry = _countries.firstWhere(
-          (country) => country.isoCode == widget.initialValue.toUpperCase(),
+          (country) => country.name == widget.initialValue.toUpperCase(),
         );
       } catch (error) {
         throw Exception(
